@@ -1,5 +1,8 @@
 package com.omega_r.google_test;
 
+import static com.omega_r.google_test.Parameters.downloadImagesPath;
+
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +14,8 @@ public class ImageDownloader {
     public void downloadImage(String imageUrl) throws IOException {
         URL url = new URL(imageUrl);
         String fileName = url.getFile();
-        String destName = "images/" + UUID.randomUUID().toString() +
+        createFile(downloadImagesPath);
+        String destName = downloadImagesPath + UUID.randomUUID().toString() +
             fileName.substring(fileName.lastIndexOf("."));
         System.out.println(destName);
 
@@ -27,5 +31,10 @@ public class ImageDownloader {
 
         is.close();
         os.close();
+    }
+
+    public void createFile(String path) {
+        File file = new File(path);
+        boolean dirCreated = file.mkdirs();
     }
 }
