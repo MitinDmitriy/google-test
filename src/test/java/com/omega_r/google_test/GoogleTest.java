@@ -26,7 +26,6 @@ public class GoogleTest {
 
             if (imageWidth >= minimalWidth) {
                 String url = googlePage.getCurrentImageSrc();
-                System.out.println("current string: " + url);
                 imageDownloader.downloadImage(url);
                 imagesDownload++;
             }
